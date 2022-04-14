@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Kalaha</string>
+    <string name="multiplayer_game">multi</string>
+    <string name="options">options</string>
+    <string name="statistics">statistics</string>
+    <string name="singleplaer_game">single</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="handicap">handicap</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>

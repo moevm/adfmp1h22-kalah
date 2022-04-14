@@ -11,6 +11,8 @@
         android:theme="@style/Theme.Kalaha">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

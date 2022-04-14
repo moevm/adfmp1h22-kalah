@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.kalaha.menu.MenuFragment"
+        android:label="Menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_singleGameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_multiGameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_optionsFragment"
+            app:destination="@id/optionsFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.kalaha.game.GameFragment"
+        android:label="Game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/optionsFragment"
+        android:name="com.example.kalaha.options.OptionsFragment"
+        android:label="OptionsFragment" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.kalaha.statistics.StatisticsFragment"
+        android:label="StatisticsFragment" />
+
+</navigation>
