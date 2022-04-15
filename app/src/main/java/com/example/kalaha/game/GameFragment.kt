@@ -20,6 +20,7 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentGameBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
         return binding.root
     }

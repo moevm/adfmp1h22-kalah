@@ -23,9 +23,6 @@ class OptionsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val sharedPref = activity?.getSharedPreferences("Options", Context.MODE_PRIVATE)
-
-
         return binding.root
     }
 }
