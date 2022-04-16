@@ -15,6 +15,40 @@
         android:padding="40dp"
         >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <Chronometer
+                android:id="@+id/simpleChronometer"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:paddingHorizontal="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:id="@+id/player_turn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcData="@{viewModel.state}"
+                tools:src="@drawable/ic_baseline_arrow_downward_24"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_home_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/spButtons"
             android:layout_width="wrap_content"
@@ -25,36 +59,42 @@
             >
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[12].toString()}"
                 android:onClick="@{() -> viewModel.onClick(12)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[11].toString()}"
                 android:onClick="@{() -> viewModel.onClick(11)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[10].toString()}"
                 android:onClick="@{() -> viewModel.onClick(10)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[9].toString()}"
                 android:onClick="@{() -> viewModel.onClick(9)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[8].toString()}"
                 android:onClick="@{() -> viewModel.onClick(8)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isSPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[7].toString()}"
                 android:onClick="@{() -> viewModel.onClick(7)}"
                 android:layout_width="@dimen/button_size"
@@ -72,36 +112,42 @@
             >
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[0].toString()}"
                 android:onClick="@{() -> viewModel.onClick(0)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[1].toString()}"
                 android:onClick="@{() -> viewModel.onClick(1)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[2].toString()}"
                 android:onClick="@{() -> viewModel.onClick(2)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[3].toString()}"
                 android:onClick="@{() -> viewModel.onClick(3)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[4].toString()}"
                 android:onClick="@{() -> viewModel.onClick(4)}"
                 android:layout_width="@dimen/button_size"
                 android:layout_height="@dimen/button_size"/>
 
             <Button
+                android:enabled="@{viewModel.isFPButtonsEnabled}"
                 android:text="@{viewModel.gameLD.holes[5].toString()}"
                 android:onClick="@{() -> viewModel.onClick(5)}"
                 android:layout_width="@dimen/button_size"
@@ -127,6 +173,117 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="#3E615E"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isGameFinished}"
+            tools:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/results"
+                android:text="Results"
+                android:textSize="28sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/score"
+                app:layout_constraintBottom_toTopOf="@id/time_text"
+                app:layout_constraintTop_toBottomOf="@id/results"
+                />
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12:32"
+                android:text="@{viewModel.gameScore}"
+                app:layout_constraintStart_toEndOf="@id/score_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/score_text"
+                app:layout_constraintTop_toTopOf="@id/score_text"
+                />
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/time"
+                app:layout_constraintBottom_toTopOf="@id/nickname_text"
+                app:layout_constraintTop_toBottomOf="@id/score_text"
+                />
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12:32"
+                app:layout_constraintStart_toEndOf="@id/time_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/time_text"
+                app:layout_constraintTop_toTopOf="@id/time_text"
+                />
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/nickname_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nickname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/nickname"
+                app:layout_constraintBottom_toTopOf="@id/home_button"
+                app:layout_constraintTop_toBottomOf="@id/time_text"
+                />
+            <EditText
+                android:textSize="20sp"
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="enter your name"
+                app:layout_constraintStart_toEndOf="@id/nickname_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/nickname_text"
+                app:layout_constraintTop_toTopOf="@id/nickname_text"
+                />
+
+            <Button
+                android:id="@+id/home_button"
+                android:text="Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/restart_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nickname_text"
+                />
+            <Button
+                android:id="@+id/restart_button"
+                android:text="Restart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/home_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/home_button"
+                app:layout_constraintTop_toTopOf="@id/home_button"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

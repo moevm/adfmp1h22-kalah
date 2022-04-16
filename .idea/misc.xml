@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1705" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/custom_btn_add.xml" value="0.2703125" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/custom_btn_remove.xml" value="0.2703125" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/ic_add_circle_full.xml" value="0.2703125" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/ic_add_circle_outline.xml" value="0.2703125" />
+        <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1705" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/ic_remove_circle_full.xml" value="0.2703125" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/drawable/ic_remove_circle_outline.xml" value="0.2703125" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
@@ -15,6 +17,7 @@
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/layout/fragment_options.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/layout/fragment_statistics.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/layout/statistics_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/kholk/Documents/GitHub/adfmp1h22-kalah/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1705" />
       </map>
     </option>
   </component>

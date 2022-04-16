@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.kalaha.StatisticListAdapter
 import com.example.kalaha.statistics.StatisticsViewModel
 import com.example.kalaha.databinding.FragmentStatisticsBinding
@@ -24,6 +25,11 @@ class StatisticsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.listOfStats.adapter = StatisticListAdapter()
+
+        binding.home.setOnClickListener {
+            val navController = findNavController()
+            navController.navigateUp()
+        }
 
         return binding.root
     }
