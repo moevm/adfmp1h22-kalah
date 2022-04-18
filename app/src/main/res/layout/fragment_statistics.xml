@@ -38,6 +38,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_of_stats"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="100dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/statistics_item"
-            app:listData="@{viewModel.statisticList}"
+            app:listData="@{viewModel.gameStatistic}"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

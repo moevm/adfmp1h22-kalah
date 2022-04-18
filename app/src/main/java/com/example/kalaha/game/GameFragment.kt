@@ -7,15 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.kalaha.Game
+import com.example.kalaha.GameStatistic
 import com.example.kalaha.R
+import com.example.kalaha.database.GameStatisticDatabase
+import com.example.kalaha.database.GameStatisticDatabaseDao
 import com.example.kalaha.databinding.FragmentGameBinding
+import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
 
     private lateinit var binding: FragmentGameBinding
     private val viewModel: GameViewModel by viewModels()
+    private lateinit var dataSource: GameStatisticDatabaseDao
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +32,9 @@ class GameFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         var isChronometerRunning = false;
+
+        val application = requireNotNull(this.activity).application
+        dataSource = GameStatisticDatabase.getInstance(application).gameStatisticDatabaseDao
 
 
         // Запуск и пеерзапуск таймера
@@ -43,7 +52,7 @@ class GameFragment : Fragment() {
         }
 
         binding.homeButton.setOnClickListener{
-            TODO("save to DB")
+            saveToDatabase()
             val navController = findNavController()
             navController.navigateUp()
         }
@@ -54,10 +63,22 @@ class GameFragment : Fragment() {
         }
 
         binding.restartButton.setOnClickListener{
-            TODO("save to DB")
+            saveToDatabase()
             viewModel.onRestart()
         }
 
         return binding.root
+    }
+
+    fun saveToDatabase(){
+        if(binding.nickname.text.isNotEmpty()){
+            val tmp = GameStatistic(
+                binding.nickname.text.toString(),
+                binding.time.text.toString(),
+                binding.score.text.toString())
+            lifecycleScope.launch {
+                dataSource.insert(tmp)
+            }
+        }
     }
 }
