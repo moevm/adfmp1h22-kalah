@@ -2,6 +2,7 @@ package com.example.kalaha.game
 
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ class GameFragment : Fragment() {
     private val viewModel: GameViewModel by viewModels()
     private lateinit var dataSource: GameStatisticDatabaseDao
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +32,9 @@ class GameFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentGameBinding.inflate(inflater)
         binding.lifecycleOwner = this
+
+        val haveBot = arguments?.getBoolean("haveBot")?:false
+
         binding.viewModel = viewModel
         var isChronometerRunning = false;
 
@@ -48,6 +53,14 @@ class GameFragment : Fragment() {
             if(!isChronometerRunning && it != Game.State.EndOfGame){
                 binding.simpleChronometer.start()
                 isChronometerRunning = true
+            }
+        }
+
+
+        // Вызов хода бота
+        viewModel.state.observe(viewLifecycleOwner){
+            if(haveBot && it == Game.State.SecondPlayerTurn){
+                viewModel.onBotTurn()
             }
         }
 

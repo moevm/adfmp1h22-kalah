@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+    // Save args
+    //def nav_version = "2.4.2"
+    //implementation "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
@@ -68,4 +71,7 @@ dependencies {
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Tests
+    implementation 'junit:junit:4.13.2'
 }

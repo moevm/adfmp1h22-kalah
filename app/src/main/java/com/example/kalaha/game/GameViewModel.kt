@@ -1,15 +1,19 @@
 package com.example.kalaha.game
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.kalaha.Game
 
-class GameViewModel: ViewModel() {
+class GameViewModel(application: Application): AndroidViewModel(application) {
 
-    private var _game = Game(false)
+    private var sharedPrefs: SharedPreferences =
+        application.getSharedPreferences("Options", Context.MODE_PRIVATE)
+
+    private var _game = Game(getFromPrefs())
     private var _gameLD = MutableLiveData(_game)
     val gameLD: LiveData<Game>
         get() = _gameLD
@@ -34,12 +38,12 @@ class GameViewModel: ViewModel() {
         it.gameScore()
     }
 
-    fun onHome(){
-
+    fun onBotTurn(){
+        onClick(_game.botStep())
     }
 
     fun onRestart(){
-        _game = Game(false)
+        _game = Game(getFromPrefs())
         _gameLD.value = _game
         _state.value = Game.State.FirstPlayerTurn
     }
@@ -47,6 +51,10 @@ class GameViewModel: ViewModel() {
     fun onClick(index: Int){
         _gameLD.value = _game.apply {
             _state.value = onHole(index)
+
         }
     }
+
+    fun getFromPrefs() = sharedPrefs.getInt("Handicap", 0)
+
 }

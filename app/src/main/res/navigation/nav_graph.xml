@@ -13,10 +13,20 @@
         tools:layout="@layout/fragment_menu" >
         <action
             android:id="@+id/action_menuFragment_to_singleGameFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@id/gameFragment">
+            <argument
+            android:name="haveBot"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        </action>
         <action
             android:id="@+id/action_menuFragment_to_multiGameFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@id/gameFragment" >
+            <argument
+                android:name="haveBot"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </action>
         <action
             android:id="@+id/action_menuFragment_to_optionsFragment"
             app:destination="@id/optionsFragment" />

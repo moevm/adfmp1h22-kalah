@@ -1,8 +1,10 @@
 package com.example.kalaha
 
-class Game(val haveBot: Boolean) {
+import android.util.Log
 
-    val holes = Array(14){ if (it == 6 || it == 13) 0 else 4  }
+class Game(private val handicap: Int) {
+
+    val holes = Array(14){ if (it == 6) 0 else if(it == 13) handicap else 4 }
 
     fun onHole(index: Int): State {
 
@@ -46,7 +48,7 @@ class Game(val haveBot: Boolean) {
         return if(!player) State.FirstPlayerTurn else State.SecondPlayerTurn
     }
 
-    private fun isEndOfGame(): Boolean{
+    fun isEndOfGame(): Boolean{
         if (holes.slice(0..5).all { it == 0 }){
             holes[13] += holes.slice(7..12).sum()
             for (i in 7..12)
@@ -64,6 +66,36 @@ class Game(val haveBot: Boolean) {
 
     fun gameScore():String{
         return holes[6].toString() + ":" + holes[13].toString()
+    }
+
+    fun botStep(): Int {
+        val results = Array(6){res(7 + it)}
+        val res = 7 + results.indices.maxByOrNull { results[it] }!!
+        Log.i("Bot", "finished counting with $res")
+        return res
+
+    }
+
+    fun res(index: Int): Int{
+
+        if(holes[index] == 0) return -1
+        val myHoles = holes.clone()
+        val startValue = myHoles[13]
+
+        val tmp = myHoles[index]
+        myHoles[index] = 0
+        for (i in 1..tmp){
+            myHoles[(index + i) % 14] ++
+        }
+
+        val endHoleIndex = (index + tmp) % 14
+
+        if(endHoleIndex in 7..12 && myHoles[(12 - endHoleIndex) % 14] != 0 && myHoles[endHoleIndex] == 1){
+            myHoles[13] += 1 + myHoles[(12 - endHoleIndex) % 14]
+            myHoles[endHoleIndex] = 0
+            myHoles[(12 - endHoleIndex) % 14] = 0
+        }
+        return myHoles[13] - startValue
     }
 
     enum class State {
